@@ -27,7 +27,7 @@ func (m Model) View() string {
 func (m Model) gameView() string {
 	q := m.currentQuestion()
 	sections := []string{
-		m.theme.title.Render("CALCTERM"),
+		m.theme.title.Render("INTEGRA"),
 		m.theme.subtitle.Render("limites • derivadas • integrais"),
 		"",
 		m.statsView(q),
@@ -143,7 +143,7 @@ func (m Model) finishView() string {
 		Render(rating)
 
 	return strings.Join([]string{
-		m.theme.title.Render("CALCTERM"),
+		m.theme.title.Render("INTEGRA"),
 		"",
 		m.theme.stat.Render(fmt.Sprintf("PONTOS %d/%d", m.score, total)),
 		m.theme.stat.Render(fmt.Sprintf("ACERTO %.0f%%", percent)),

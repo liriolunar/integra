@@ -83,7 +83,7 @@ var Bank = []Question{
 	},
 	{
 		Topic:  "Integrais",
-		Prompt: "Pegadinha final: qual é o valor de ∫ e^(2x) dx ?",
+		Prompt: "Qual é o valor de ∫ e^(2x) dx ?",
 		Options: []string{
 			"e^(2x) + C",
 			"2e^(2x) + C",

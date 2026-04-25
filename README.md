@@ -1,4 +1,4 @@
-# CalcTerm
+# Integra
 
 Jogo em terminal feito em Go para apoiar o ensino de Cálculo 1 com perguntas de limites, derivadas e integrais.
 
@@ -13,5 +13,5 @@ go run ./cmd/calculus-challenge
 Slides em Presenterm:
 
 ```bash
-presenterm docs/apresentacao-calcterm.md
+presenterm docs/apresentacao-integra.md
 ```
