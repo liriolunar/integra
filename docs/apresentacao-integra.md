@@ -6,10 +6,29 @@ theme:
   override:
     palette:
       colors:
+        solarized_yellow: "b58900"
+        solarized_orange: "cb4b16"
+        solarized_red: "dc322f"
+        solarized_magenta: "d33682"
+        solarized_violet: "6c71c4"
+        solarized_blue: "268bd2"
         solarized_cyan: "2aa198"
+        solarized_green: "859900"
       classes:
         accent:
           foreground: "2aa198"
+        concept:
+          foreground: "268bd2"
+        warm:
+          foreground: "cb4b16"
+        strong:
+          foreground: "dc322f"
+        architecture:
+          foreground: "6c71c4"
+        positive:
+          foreground: "859900"
+        title_accent:
+          foreground: "b58900"
     default:
       margin:
         percent: 8
@@ -57,9 +76,9 @@ Projeto Aplicado 6
 
 <!-- font_size: 6 -->
 
-- Objetivo: desenvolver um jogo aplicável ao ensino de Cálculo 1.
-- Conteúdos trabalhados: **<span class="accent">limites</span>**, **<span class="accent">derivadas</span>** e **<span class="accent">integrais</span>**.
-- Produto final: um quiz em terminal simples, visual e acessível.
+- Problema: revisar **<span class="concept">Cálculo 1</span>** de forma mais atraente.
+- Solução: um quiz em terminal chamado **<span class="accent">Integra</span>**.
+- Foco: **<span class="concept">limites</span>**, **<span class="warm">derivadas</span>** e **<span class="positive">integrais</span>**.
 
 <!-- end_slide -->
 
@@ -68,92 +87,23 @@ Problema
 
 <!-- font_size: 6 -->
 
-- Exercícios tradicionais nem sempre mantêm o estudante engajado.
-- Em Cálculo 1, a prática frequente é importante para consolidar conceitos.
-- O projeto busca oferecer uma forma mais interativa de revisão.
+- Exercícios repetitivos podem reduzir o **<span class="strong">engajamento</span>**.
+- Cálculo exige **<span class="warm">prática frequente</span>**.
+- Queríamos uma revisão:
+  - <span class="concept">rápida</span>,
+  - <span class="accent">simples</span>,
+  - <span class="positive">interativa</span>.
 
 <!-- end_slide -->
 
-Solução Proposta
-================
+Solução
+=======
 
 <!-- font_size: 6 -->
 
-- Foi desenvolvido o **<span class="accent">Integra</span>**, um quiz em TUI (*Terminal User Interface*).
-- O jogo apresenta perguntas com alternativas **A, B, C e D**.
-- A proposta principal é apoiar o **<span class="accent">aprendizado individual</span>** do estudante.
-- O aluno responde no próprio ritmo e recebe feedback imediato.
-- O fluxo atual possui **7 perguntas**:
-  - 3 de <span class="accent">limites</span>,
-  - 3 de <span class="accent">derivadas</span>,
-  - 1 <span class="accent">integral</span> final.
-
-<!-- end_slide -->
-
-Por que Terminal?
-=================
-
-<!-- font_size: 6 -->
-
-- O terminal é leve, rápido e funciona bem em laboratório ou notebook simples.
-- A interface TUI evita distrações e mantém o foco no conteúdo matemático.
-- O uso de Go permite gerar uma aplicação simples de executar e manter.
-
-<!-- end_slide -->
-
-Tecnologias Utilizadas
-======================
-
-<!-- font_size: 6 -->
-
-- **Go**: linguagem principal do projeto.
-- **Bubble Tea**: gerenciamento de estado e navegação da interface.
-- **Lip Gloss**: estilização visual no terminal.
-- **Presenterm**: criação desta apresentação em Markdown para terminal.
-
-Estrutura principal do projeto:
-
-```text
-cmd/calculus-challenge/main.go
-internal/game/model.go
-internal/game/view.go
-internal/game/theme.go
-pkg/quiz/questions.go
-```
-
-<!-- end_slide -->
-
-Como o Jogo Funciona
-====================
-
-<!-- font_size: 6 -->
-
-1. O jogo mostra a pergunta no topo.
-2. As alternativas aparecem em destaque no centro.
-3. O estudante escolhe uma opção.
-4. O sistema mostra a resposta correta e uma explicação curta.
-
-Resultado esperado:
-
-- revisão rápida do conteúdo;
-- autonomia no estudo;
-- feedback imediato durante a prática.
-
-<!-- end_slide -->
-
-Decisões Pedagógicas
-====================
-
-<!-- font_size: 6 -->
-
-- As perguntas foram simplificadas para uso em aula.
-- A ordem foi definida para acompanhar a progressão do conteúdo:
-  - primeiro **<span class="accent">limites</span>**,
-  - depois **<span class="accent">derivadas</span>**,
-  - por último uma **<span class="accent">integral</span>**.
-- A última questão funciona como um momento de atenção extra para a turma.
-
-Exemplo da questão final:
+- Criamos o **<span class="accent">Integra</span>**.
+- Um jogo em **<span class="architecture">terminal</span>** com perguntas de múltipla escolha.
+- O estudante responde e recebe **<span class="positive">feedback imediato</span>**.
 
 ```typst +render
 $ integral e^(2x) dif x = 1/2 e^(2x) + C $
@@ -161,32 +111,115 @@ $ integral e^(2x) dif x = 1/2 e^(2x) + C $
 
 <!-- end_slide -->
 
-Diferenciais do Projeto
-=======================
+Como Funciona
+=============
 
 <!-- font_size: 6 -->
 
-- Interface visual simples e objetiva.
-- Fácil adaptação do banco de perguntas.
-- Pode ser expandido com:
-  - níveis de dificuldade,
-  - cronômetro,
-  - novas listas de exercícios.
+1. Pergunta no topo.
+2. Alternativas em destaque.
+3. Escolha do estudante.
+4. Correção + explicação.
+
+Resultado:
+
+- <span class="positive">prática individual</span>;
+- <span class="concept">revisão rápida</span>;
+- <span class="warm">reforço imediato</span>.
+
+<!-- end_slide -->
+
+Quizzes Externos
+================
+
+<!-- font_size: 4 -->
+
+- Os conteúdos ficam em **<span class="accent">/questions</span>**.
+- O formato escolhido foi **<span class="architecture">YAML</span>**.
+
+```yaml
+name: Cálculo 1 — Revisão Guiada
+questions:
+  - topic: Limites
+    prompt: Qual é o limite lim x→0 de x² ?
+    options: ["0", "1", "2", "não existe"]
+    answer: 0
+    explanation: x² tende a 0.
+```
+
+<!-- end_slide -->
+
+Menu de Quizzes
+===============
+
+<!-- font_size: 6 -->
+
+- Ao abrir o jogo, o usuário escolhe um **<span class="concept">quiz</span>**.
+- Novos quizzes podem ser adicionados sem mudar o código.
+- Isso deixa o projeto **<span class="architecture">modular</span>** e **<span class="positive">reaproveitável</span>**.
+
+<!-- end_slide -->
+
+Arquitetura
+===========
+
+<!-- font_size: 4 -->
+
+```text
+󰉋 cmd/
+└── 󰈔 calculus-challenge/
+    └──  main.go
+
+󰉋 internal/
+└── 󰈔 game/
+    ├──  model.go
+    ├──  view.go
+    └──  theme.go
+
+󰉋 pkg/
+└── 󰈔 quiz/
+    ├──  loader.go
+    └──  types.go
+
+󰉋 questions/
+└──  integra-calculo-1.yaml
+```
+
+<!-- end_slide -->
+
+Tecnologias
+===========
+
+<!-- font_size: 6 -->
+
+- **<span class="concept">Go</span>**
+- **<span class="warm">Bubble Tea</span>**
+- **<span class="accent">Lip Gloss</span>**
+- **<span class="architecture">YAML</span>**
+- **<span class="positive">Presenterm</span>**
+
+<!-- end_slide -->
+
+Diferenciais
+============
+
+<!-- font_size: 6 -->
+
+- <span class="positive">leve e rápido</span>;
+- <span class="concept">fácil de executar</span>;
+- <span class="architecture">fácil de expandir</span>;
+- <span class="warm">bom para revisão e estudo individual</span>.
 
 <!-- end_slide -->
 
 Demonstração
 ============
 
-<!-- font_size: 6 -->
-
-Para executar o jogo:
+<!-- font_size: 4 -->
 
 ```bash
 go run ./cmd/calculus-challenge
 ```
-
-Para executar esta apresentação no Presenterm:
 
 ```bash
 presenterm docs/apresentacao-integra.md
@@ -197,13 +230,10 @@ presenterm docs/apresentacao-integra.md
 Conclusão
 =========
 
-<!-- font_size: 2 -->
+<!-- font_size: 6 -->
 
-- O **<span class="accent">Integra</span>** atende ao objetivo do trabalho ao propor um jogo para apoio ao ensino de Cálculo 1.
-- A solução combina:
-  - conteúdo matemático,
-  - prática individual,
-  - implementação simples e acessível.
-- O projeto pode ser usado em revisão de conteúdo e atividades de apoio ao estudo.
+- O **<span class="accent">Integra</span>** transforma revisão em interação.
+- Une conteúdo matemático com uma interface simples.
+- É uma base pronta para **<span class="positive">novos quizzes</span>** e **<span class="architecture">novas funcionalidades</span>**.
 
 Obrigado!
