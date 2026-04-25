@@ -10,9 +10,17 @@ import (
 )
 
 func (m Model) View() string {
-	content := m.finishView()
-	if !m.finished {
-		content = m.gameView()
+	var content string
+	switch m.screen {
+	case screenMenu:
+		content = m.menuView()
+	case screenError:
+		content = m.errorView()
+	default:
+		content = m.finishView()
+		if !m.finished {
+			content = m.gameView()
+		}
 	}
 
 	rendered := outerWidth(m.theme.app, m.contentWidth()+m.theme.app.GetHorizontalFrameSize()).
@@ -26,9 +34,13 @@ func (m Model) View() string {
 
 func (m Model) gameView() string {
 	q := m.currentQuestion()
+	subtitle := "limites • derivadas • integrais"
+	if currentQuiz := m.currentQuizData(); currentQuiz.Name != "" {
+		subtitle = currentQuiz.Name
+	}
 	sections := []string{
 		m.theme.title.Render("INTEGRA"),
-		m.theme.subtitle.Render("limites • derivadas • integrais"),
+		m.theme.subtitle.Render(subtitle),
 		"",
 		m.statsView(q),
 		m.questionView(q),
@@ -37,6 +49,44 @@ func (m Model) gameView() string {
 	}
 
 	return strings.Join(sections, "\n")
+}
+
+func (m Model) menuView() string {
+	items := make([]string, 0, len(m.quizzes))
+	for index, loadedQuiz := range m.quizzes {
+		style := m.theme.menuItem
+		if index == m.selectedQuiz {
+			style = m.theme.menuSelect
+		}
+
+		content := fmt.Sprintf("%d. %s", index+1, loadedQuiz.Name)
+		if loadedQuiz.Description != "" {
+			content += "\n" + loadedQuiz.Description
+		}
+		content += fmt.Sprintf("\n%d perguntas", len(loadedQuiz.Questions))
+		items = append(items, outerWidth(style, m.contentWidth()).Render(content))
+	}
+
+	sections := []string{
+		m.theme.title.Render("INTEGRA"),
+		m.theme.subtitle.Render("Selecione um quiz em /questions"),
+		"",
+		strings.Join(items, "\n"),
+		m.theme.info.Render("Use ↑/↓ ou j/k para navegar • Enter para abrir • 1-9 para atalho • q para sair"),
+	}
+
+	return strings.Join(sections, "\n")
+}
+
+func (m Model) errorView() string {
+	card := outerWidth(m.theme.explanation, min(70, m.contentWidth())).Render(m.loadError)
+	return strings.Join([]string{
+		m.theme.title.Render("INTEGRA"),
+		m.theme.subtitle.Render("Erro ao carregar quizzes"),
+		"",
+		card,
+		m.theme.info.Render("Pressione r para tentar recarregar ou q para sair."),
+	}, "\n")
 }
 
 func (m Model) statsView(q quiz.Question) string {
@@ -103,9 +153,9 @@ func (m Model) renderChoice(q quiz.Question, index, width int) string {
 
 func (m Model) footerView(q quiz.Question) string {
 	if !m.showAnswer {
-		controls := "Use ←/→ ou h/l para mover • a/b/c/d para escolher • Enter/Espaço para confirmar • q para sair"
+		controls := "Use ←/→ ou h/l para mover • a/b/c/d para escolher • Enter/Espaço para confirmar • m menu • q sair"
 		if m.choiceColumns() == 1 {
-			controls = "Use h/l ou a/b/c/d para mudar a opção • Enter/Espaço para confirmar • q para sair"
+			controls = "Use h/l ou a/b/c/d para mudar a opção • Enter/Espaço para confirmar • m menu • q sair"
 		}
 		return m.theme.info.Render(controls)
 	}
@@ -121,7 +171,7 @@ func (m Model) footerView(q quiz.Question) string {
 	return strings.Join([]string{
 		result,
 		explanation,
-		m.theme.info.Render("Pressione Enter, Espaço, → ou l para continuar."),
+		m.theme.info.Render("Pressione Enter, Espaço, → ou l para continuar • m para voltar ao menu."),
 	}, "\n")
 }
 
@@ -144,12 +194,13 @@ func (m Model) finishView() string {
 
 	return strings.Join([]string{
 		m.theme.title.Render("INTEGRA"),
+		m.theme.subtitle.Render(m.currentQuizData().Name),
 		"",
 		m.theme.stat.Render(fmt.Sprintf("PONTOS %d/%d", m.score, total)),
 		m.theme.stat.Render(fmt.Sprintf("ACERTO %.0f%%", percent)),
 		"",
 		summaryCard,
-		m.theme.info.Render("Pressione r para jogar novamente ou q para sair."),
+		m.theme.info.Render("Pressione r para jogar novamente • m para menu • q para sair."),
 	}, "\n")
 }
 

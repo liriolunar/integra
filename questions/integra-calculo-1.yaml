@@ -1,0 +1,72 @@
+name: Cálculo 1 — Revisão Guiada
+description: 3 questões de limites, 3 de derivadas e 1 integral final.
+questions:
+  - topic: Limites
+    prompt: "Qual é o valor de lim x→2 (x + 3) ?"
+    options:
+      - "2"
+      - "3"
+      - "5"
+      - "6"
+    answer: 2
+    explanation: Em funções contínuas, basta substituir x por 2. Assim, 2 + 3 = 5.
+
+  - topic: Limites
+    prompt: "Qual é o limite lim x→0 de x² ?"
+    options:
+      - "0"
+      - "1"
+      - "2"
+      - não existe
+    answer: 0
+    explanation: Quando x tende a 0, x² também tende a 0.
+
+  - topic: Limites
+    prompt: "Qual é o limite lim x→1 (2x + 1) ?"
+    options:
+      - "1"
+      - "2"
+      - "3"
+      - "4"
+    answer: 2
+    explanation: Como a função é contínua, basta substituir x por 1. 2(1) + 1 = 3.
+
+  - topic: Derivadas
+    prompt: "Qual é a derivada de f(x) = x² ?"
+    options:
+      - 2x
+      - x
+      - x³
+      - "2"
+    answer: 0
+    explanation: Pela regra da potência, d/dx (x²) = 2x.
+
+  - topic: Derivadas
+    prompt: "Qual é a derivada de f(x) = 3x ?"
+    options:
+      - "3"
+      - x
+      - 3x²
+      - "0"
+    answer: 0
+    explanation: A derivada de ax é a, então a derivada de 3x é 3.
+
+  - topic: Derivadas
+    prompt: "Qual é a derivada de f(x) = x³ ?"
+    options:
+      - 3x²
+      - x²
+      - 3x
+      - x⁴
+    answer: 0
+    explanation: Pela regra da potência, d/dx (x³) = 3x².
+
+  - topic: Integrais
+    prompt: "Qual é o valor de ∫ e^(2x) dx ?"
+    options:
+      - e^(2x) + C
+      - 2e^(2x) + C
+      - (1/2)e^(2x) + C
+      - e^x + C
+    answer: 2
+    explanation: A derivada de e^(2x) é 2e^(2x). Por isso, a primitiva correta é (1/2)e^(2x) + C.

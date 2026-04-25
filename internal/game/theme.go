@@ -14,6 +14,9 @@ type theme struct {
 	error       lipgloss.Style
 	explanation lipgloss.Style
 	gap         lipgloss.Style
+	menuItem    lipgloss.Style
+	menuSelect  lipgloss.Style
+	muted       lipgloss.Style
 }
 
 func newTheme() theme {
@@ -64,6 +67,22 @@ func newTheme() theme {
 			Padding(1, 2).
 			MarginTop(1),
 		gap: lipgloss.NewStyle(),
+		menuItem: lipgloss.NewStyle().
+			Foreground(lipgloss.Color("#E2E8F0")).
+			Border(lipgloss.RoundedBorder()).
+			BorderForeground(lipgloss.Color("#475569")).
+			Padding(1, 2).
+			MarginBottom(1),
+		menuSelect: lipgloss.NewStyle().
+			Foreground(lipgloss.Color("#0F172A")).
+			Background(lipgloss.Color("#FDE047")).
+			Border(lipgloss.RoundedBorder()).
+			BorderForeground(lipgloss.Color("#FACC15")).
+			Padding(1, 2).
+			MarginBottom(1).
+			Bold(true),
+		muted: lipgloss.NewStyle().
+			Foreground(lipgloss.Color("#94A3B8")),
 	}
 }
 
