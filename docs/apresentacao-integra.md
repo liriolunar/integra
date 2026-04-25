@@ -55,9 +55,6 @@ authors:
 Projeto Aplicado 6
 ==================
 
-Visão Geral
------------
-
 <!-- font_size: 6 -->
 
 - Objetivo: desenvolver um jogo aplicável ao ensino de Cálculo 1.
@@ -69,9 +66,6 @@ Visão Geral
 Problema
 ========
 
-Contexto do Trabalho
---------------------
-
 <!-- font_size: 6 -->
 
 - Exercícios tradicionais nem sempre mantêm o estudante engajado.
@@ -82,9 +76,6 @@ Contexto do Trabalho
 
 Solução Proposta
 ================
-
-Produto Desenvolvido
---------------------
 
 <!-- font_size: 6 -->
 
@@ -102,9 +93,6 @@ Produto Desenvolvido
 Por que Terminal?
 =================
 
-Justificativa da Escolha
-------------------------
-
 <!-- font_size: 6 -->
 
 - O terminal é leve, rápido e funciona bem em laboratório ou notebook simples.
@@ -115,9 +103,6 @@ Justificativa da Escolha
 
 Tecnologias Utilizadas
 ======================
-
-Base Técnica
-------------
 
 <!-- font_size: 6 -->
 
@@ -141,9 +126,6 @@ pkg/quiz/questions.go
 Como o Jogo Funciona
 ====================
 
-Fluxo de Uso
-------------
-
 <!-- font_size: 6 -->
 
 1. O jogo mostra a pergunta no topo.
@@ -161,9 +143,6 @@ Resultado esperado:
 
 Decisões Pedagógicas
 ====================
-
-Organização das Questões
-------------------------
 
 <!-- font_size: 6 -->
 
@@ -185,9 +164,6 @@ $ integral e^(2x) dif x = 1/2 e^(2x) + C $
 Diferenciais do Projeto
 =======================
 
-Pontos Fortes
--------------
-
 <!-- font_size: 6 -->
 
 - Interface visual simples e objetiva.
@@ -201,9 +177,6 @@ Pontos Fortes
 
 Demonstração
 ============
-
-Execução
---------
 
 <!-- font_size: 6 -->
 
@@ -223,9 +196,6 @@ presenterm docs/apresentacao-integra.md
 
 Conclusão
 =========
-
-Síntese Final
--------------
 
 <!-- font_size: 2 -->
 
