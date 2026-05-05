@@ -71,80 +71,57 @@ authors:
   - Enzo Portella Zorzin
 ---
 
-Projeto Aplicado 6
-==================
+Motivação
+=========
 
 <!-- font_size: 6 -->
 
-- Problema: revisar **<span class="concept">Cálculo 1</span>** de forma mais atraente.
-- Solução: um quiz em terminal chamado **<span class="accent">Integra</span>**.
-- Foco: **<span class="concept">limites</span>**, **<span class="warm">derivadas</span>** e **<span class="positive">integrais</span>**.
+- Revisar Cálculo 1 com listas de exercícios tradicionais é monótono.
+- Ferramentas web ou mobile exigem instalação, login ou conexão.
+- A proposta foi um quiz leve e rápido, rodando direto no terminal.
 
 <!-- end_slide -->
 
-Problema
-========
-
-<!-- font_size: 6 -->
-
-- Exercícios repetitivos podem reduzir o **<span class="strong">engajamento</span>**.
-- Cálculo exige **<span class="warm">prática frequente</span>**.
-- Queríamos uma revisão:
-  - <span class="concept">rápida</span>,
-  - <span class="accent">simples</span>,
-  - <span class="positive">interativa</span>.
-
-<!-- end_slide -->
-
-Solução
+O que é
 =======
 
 <!-- font_size: 6 -->
 
-- Criamos o **<span class="accent">Integra</span>**.
-- Um jogo em **<span class="architecture">terminal</span>** com perguntas de múltipla escolha.
-- O estudante responde e recebe **<span class="positive">feedback imediato</span>**.
-
-```typst +render
-$ integral e^(2x) dif x = 1/2 e^(2x) + C $
-```
+- Quiz em terminal com perguntas de múltipla escolha.
+- Temas: limites, derivadas e integrais.
+- O estudante escolhe uma alternativa e recebe feedback imediato.
+- Respostas erradas vêm acompanhadas da explicação.
 
 <!-- end_slide -->
 
-Como Funciona
+Fluxo do Jogo
 =============
 
 <!-- font_size: 6 -->
 
-1. Pergunta no topo.
-2. Alternativas em destaque.
-3. Escolha do estudante.
-4. Correção + explicação.
-
-Resultado:
-
-- <span class="positive">prática individual</span>;
-- <span class="concept">revisão rápida</span>;
-- <span class="warm">reforço imediato</span>.
+1. O usuário escolhe um quiz no menu inicial.
+2. Cada pergunta é exibida com até quatro alternativas.
+3. O estudante navega entre as opções e confirma a resposta.
+4. O jogo indica se acertou ou errou e mostra a explicação.
+5. Ao final, exibe a pontuação e a porcentagem de acertos.
 
 <!-- end_slide -->
 
-Quizzes Externos
+Conteúdo Externo
 ================
 
 <!-- font_size: 4 -->
 
-- Os conteúdos ficam em **<span class="accent">/questions</span>**.
-- O formato escolhido foi **<span class="architecture">YAML</span>**.
+As perguntas ficam no diretório `/questions` em arquivos YAML. Isso permite adicionar novos quizzes sem recompilar o código.
 
 ```yaml
 name: Cálculo 1 — Revisão Guiada
 questions:
   - topic: Limites
-    prompt: Qual é o limite lim x→0 de x² ?
+    prompt: Qual é o limite de x² quando x tende a 0?
     options: ["0", "1", "2", "não existe"]
     answer: 0
-    explanation: x² tende a 0.
+    explanation: x² tende a 0 quando x se aproxima de 0.
 ```
 
 <!-- end_slide -->
@@ -154,9 +131,7 @@ Menu de Quizzes
 
 <!-- font_size: 6 -->
 
-- Ao abrir o jogo, o usuário escolhe um **<span class="concept">quiz</span>**.
-- Novos quizzes podem ser adicionados sem mudar o código.
-- Isso deixa o projeto **<span class="architecture">modular</span>** e **<span class="positive">reaproveitável</span>**.
+Na tela inicial, o usuário vê a lista de quizzes disponíveis e seleciona um para começar. Novos arquivos YAML adicionados ao diretório `/questions` aparecem automaticamente no menu.
 
 <!-- end_slide -->
 
@@ -185,6 +160,11 @@ Arquitetura
 └──  integra-calculo-1.yaml
 ```
 
+- `cmd/`: ponto de entrada
+- `internal/game/`: lógica, interface e tema
+- `pkg/quiz/`: parser YAML e tipos
+- `questions/`: banco de perguntas
+
 <!-- end_slide -->
 
 Tecnologias
@@ -192,48 +172,27 @@ Tecnologias
 
 <!-- font_size: 6 -->
 
-- **<span class="concept">Go</span>**
-- **<span class="warm">Bubble Tea</span>**
-- **<span class="accent">Lip Gloss</span>**
-- **<span class="architecture">YAML</span>**
-- **<span class="positive">Presenterm</span>**
+- **Go** — linguagem principal
+- **Bubble Tea** — framework para TUI
+- **Lip Gloss** — estilização de componentes
+- **YAML** — formato dos quizzes
+- **Presenterm** — geração dos slides
 
 <!-- end_slide -->
 
-Diferenciais
-============
+Características
+===============
 
 <!-- font_size: 6 -->
 
-- <span class="positive">leve e rápido</span>;
-- <span class="concept">fácil de executar</span>;
-- <span class="architecture">fácil de expandir</span>;
-- <span class="warm">bom para revisão e estudo individual</span>.
+- Quizzes são independentes do código-fonte.
+- Interface simples, navegável pelo teclado.
+- Útil para revisão rápida e estudo individual.
 
 <!-- end_slide -->
-
-Demonstração
-============
-
-<!-- font_size: 4 -->
-
-```bash
-go run ./cmd/calculus-challenge
-```
-
-```bash
-presenterm docs/apresentacao-integra.md
-```
-
-<!-- end_slide -->
-
-Conclusão
-=========
 
 <!-- font_size: 6 -->
-
-- O **<span class="accent">Integra</span>** transforma revisão em interação.
-- Une conteúdo matemático com uma interface simples.
-- É uma base pronta para **<span class="positive">novos quizzes</span>** e **<span class="architecture">novas funcionalidades</span>**.
 
 Obrigado!
+
+<!-- end_slide -->

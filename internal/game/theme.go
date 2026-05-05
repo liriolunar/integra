@@ -2,6 +2,28 @@ package game
 
 import "github.com/charmbracelet/lipgloss"
 
+// Solarized accent colors (consistent across light and dark modes).
+var (
+	solYellow  = lipgloss.Color("#b58900")
+	solOrange  = lipgloss.Color("#cb4b16")
+	solRed     = lipgloss.Color("#dc322f")
+	solMagenta = lipgloss.Color("#d33682")
+	solViolet  = lipgloss.Color("#6c71c4")
+	solBlue    = lipgloss.Color("#268bd2")
+	solCyan    = lipgloss.Color("#2aa198")
+	solGreen   = lipgloss.Color("#859900")
+)
+
+// Adaptive Solarized base colors that switch between light and dark
+// terminal backgrounds.
+var (
+	solBaseFg          = lipgloss.AdaptiveColor{Light: "#657b83", Dark: "#839496"} // Base00 / Base0
+	solBaseEmphasis    = lipgloss.AdaptiveColor{Light: "#586e75", Dark: "#93a1a1"} // Base01 / Base1
+	solBaseSecondary   = lipgloss.AdaptiveColor{Light: "#93a1a1", Dark: "#586e75"} // Base1 / Base01
+	solBaseInverse     = lipgloss.AdaptiveColor{Light: "#002b36", Dark: "#fdf6e3"} // Base03 / Base3
+	solBaseBgHighlight = lipgloss.AdaptiveColor{Light: "#eee8d5", Dark: "#073642"} // Base2 / Base02
+)
+
 type theme struct {
 	app         lipgloss.Style
 	title       lipgloss.Style
@@ -23,94 +45,93 @@ func newTheme() theme {
 	return theme{
 		app: lipgloss.NewStyle().
 			Padding(1, 2).
-			Foreground(lipgloss.Color("#F8FAFC")),
+			Foreground(solBaseFg),
 		title: lipgloss.NewStyle().
 			Bold(true).
-			Foreground(lipgloss.Color("#F8FAFC")).
+			Foreground(solBaseEmphasis).
 			Padding(0, 2),
 		subtitle: lipgloss.NewStyle().
 			Bold(true).
-			Foreground(lipgloss.Color("#C4B5FD")),
+			Foreground(solViolet),
 		stat: lipgloss.NewStyle().
 			Bold(true).
-			Foreground(lipgloss.Color("#0F172A")).
-			Foreground(lipgloss.Color("#67E8F9")).
+			Foreground(solCyan).
 			Padding(0, 1).
 			MarginRight(1),
 		topic: lipgloss.NewStyle().
 			Bold(true).
-			Foreground(lipgloss.Color("#FDE68A")).
+			Foreground(solYellow).
 			Border(lipgloss.RoundedBorder()).
-			BorderForeground(lipgloss.Color("#F59E0B")).
+			BorderForeground(solOrange).
 			Padding(0, 2),
 		questionBox: lipgloss.NewStyle().
 			Bold(true).
-			Foreground(lipgloss.Color("#F8FAFC")).
+			Foreground(solBaseEmphasis).
 			Border(lipgloss.DoubleBorder()).
-			BorderForeground(lipgloss.Color("#38BDF8")).
+			BorderForeground(solBlue).
 			Padding(1, 2).
 			MarginTop(1).
 			MarginBottom(1),
 		info: lipgloss.NewStyle().
-			Foreground(lipgloss.Color("#CBD5E1")).
+			Foreground(solBaseSecondary).
 			MarginTop(1),
 		success: lipgloss.NewStyle().
 			Bold(true).
-			Foreground(lipgloss.Color("#86EFAC")),
+			Foreground(solGreen),
 		error: lipgloss.NewStyle().
 			Bold(true).
-			Foreground(lipgloss.Color("#FDA4AF")),
+			Foreground(solRed),
 		explanation: lipgloss.NewStyle().
-			Foreground(lipgloss.Color("#E2E8F0")).
+			Foreground(solBaseFg).
 			Border(lipgloss.NormalBorder()).
-			BorderForeground(lipgloss.Color("#7C3AED")).
+			BorderForeground(solViolet).
 			Padding(1, 2).
 			MarginTop(1),
 		gap: lipgloss.NewStyle(),
 		menuItem: lipgloss.NewStyle().
-			Foreground(lipgloss.Color("#E2E8F0")).
+			Foreground(solBaseFg).
 			Border(lipgloss.RoundedBorder()).
-			BorderForeground(lipgloss.Color("#475569")).
+			BorderForeground(solBaseSecondary).
 			Padding(1, 2).
 			MarginBottom(1),
 		menuSelect: lipgloss.NewStyle().
-			Foreground(lipgloss.Color("#0F172A")).
-			Background(lipgloss.Color("#FDE047")).
+			Foreground(solBaseInverse).
+			Background(solYellow).
 			Border(lipgloss.RoundedBorder()).
-			BorderForeground(lipgloss.Color("#FACC15")).
+			BorderForeground(solYellow).
 			Padding(1, 2).
 			MarginBottom(1).
 			Bold(true),
 		muted: lipgloss.NewStyle().
-			Foreground(lipgloss.Color("#94A3B8")),
+			Foreground(solBaseSecondary),
 	}
 }
 
 func (t theme) choiceDefault() lipgloss.Style {
 	return t.choiceBase().
-		Foreground(lipgloss.Color("#E2E8F0")).
-		BorderForeground(lipgloss.Color("#475569"))
+		Foreground(solBaseFg).
+		BorderForeground(solBaseSecondary)
 }
 
 func (t theme) choiceSelected() lipgloss.Style {
 	return t.choiceBase().
-		Foreground(lipgloss.Color("#0F172A")).
-		Background(lipgloss.Color("#FDE047")).
-		BorderForeground(lipgloss.Color("#FACC15"))
+		Foreground(solBaseInverse).
+		Background(solYellow).
+		BorderForeground(solYellow)
 }
 
 func (t theme) choiceCorrect() lipgloss.Style {
 	return t.choiceBase().
-		Foreground(lipgloss.Color("#ECFDF5")).
-		Background(lipgloss.Color("#166534")).
-		BorderForeground(lipgloss.Color("#4ADE80"))
+		Foreground(solBaseInverse).
+		Background(solGreen).
+		BorderForeground(solGreen)
 }
 
 func (t theme) choiceWrong() lipgloss.Style {
 	return t.choiceBase().
-		Foreground(lipgloss.Color("#FEF2F2")).
-		Background(lipgloss.Color("#991B1B")).
-		BorderForeground(lipgloss.Color("#F87171"))
+		Foreground(solBaseInverse).
+		Background(solRed).
+		BorderForeground(solRed)
 }
 
 func (t theme) choiceBase() lipgloss.Style {
