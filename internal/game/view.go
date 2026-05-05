@@ -6,7 +6,7 @@ import (
 
 	"github.com/charmbracelet/lipgloss"
 
-	"proj-aplicado-6/pkg/quiz"
+	"integra/pkg/quiz"
 )
 
 func (m Model) View() string {

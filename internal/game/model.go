@@ -5,7 +5,7 @@ import (
 
 	tea "github.com/charmbracelet/bubbletea"
 
-	"proj-aplicado-6/pkg/quiz"
+	"integra/pkg/quiz"
 )
 
 type screenMode int

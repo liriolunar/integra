@@ -1,4 +1,4 @@
-module proj-aplicado-6
+module integra
 
 go 1.26.0
 

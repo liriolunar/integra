@@ -6,7 +6,7 @@ import (
 
 	tea "github.com/charmbracelet/bubbletea"
 
-	"proj-aplicado-6/internal/game"
+	"integra/internal/game"
 )
 
 func main() {
