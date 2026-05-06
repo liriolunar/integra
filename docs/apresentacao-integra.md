@@ -167,6 +167,19 @@ Arquitetura
 
 <!-- end_slide -->
 
+Linguagem escolhida
+===================
+
+<!-- column_layout: [1, 3, 1] -->
+
+<!-- column: 1 -->
+
+![image:width:60%](assets/gopher.png)
+
+<!-- reset_layout -->
+
+<!-- end_slide -->
+
 Tecnologias
 ===========
 
@@ -177,6 +190,29 @@ Tecnologias
 - **Lip Gloss** — estilização de componentes
 - **YAML** — formato dos quizzes
 - **Presenterm** — geração dos slides
+
+<!-- end_slide -->
+
+Por que Bubble Tea & Lip Gloss?
+===============================
+
+<!-- column_layout: [3, 2] -->
+
+<!-- column: 0 -->
+
+<!-- font_size: 5 -->
+
+- **Arquitetura Elm** (Model-Update-View) torna o estado previsível
+- Nativo em **Go**: integração perfeita com a linguagem do projeto
+- **Bubble Tea** abstrai eventos de teclado, telas e ciclo de vida
+- **Lip Gloss** estiliza componentes (cores, bordas, padding) sem CSS
+- Substituem `ncurses` por uma API declarativa e testável
+
+<!-- column: 1 -->
+
+![image:width:90%](assets/ar2y63.jpg)
+
+<!-- reset_layout -->
 
 <!-- end_slide -->
 
